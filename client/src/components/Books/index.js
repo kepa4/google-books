@@ -35,7 +35,10 @@ class Books extends React.Component {
                 <Button variant="primary" href={book.volumeInfo.infoLink}>
                   Link
                 </Button>
-                <Button variant="primary" onClick={() => this.handleSave(book)}>
+                <Button
+                  variant="primary"
+                  onClick={() => this.handleSave(book)}
+                  href="/Saved">
                   Save
                 </Button>
               </Card.Body>
