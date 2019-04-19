@@ -7,7 +7,7 @@ const MONGODB_URI =
   process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
 
 // Define middleware here
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
-app.use('api', apiRoutes);
+app.use('/api', apiRoutes);
 
 // Send every other request to the React app
 // Define any API routes before this runs

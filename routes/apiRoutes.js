@@ -16,9 +16,13 @@ db.once('open', function() {
 
 router.get('/books', (req, res) => {
   axios
-    .get('https://www.googleapis.com/books/v1/volumes/', {params: req.query})
-    .then(({data: {results}}) => res.json(results))
-    .cath(err => res.status(422).json(err));
+    .get('https://www.googleapis.com/books/v1/volumes/', {
+      params: req.query
+    })
+    .then(results => {
+      res.json(results.data);
+    })
+    .catch(err => res.status(422).json(err));
 });
 
 router.post('/books', (req, res) => {
@@ -31,8 +35,8 @@ router.post('/books', (req, res) => {
     });
 });
 
-router.delete('books/:id', (req, res) => {
-  Book.deleteOne({_id: req.id}).then(function(resonse) {
+router.delete('/books/:id', (req, res) => {
+  Book.deleteOne({ _id: req.id }).then(function(resonse) {
     res.json(response);
   });
 });
