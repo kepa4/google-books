@@ -3,6 +3,18 @@ var router = require('express').Router();
 var Book = require('../models/book.js');
 var mongoose = require('mongoose');
 
+const MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost/googleBooks';
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
+var db = mongoose.connection;
+
+db.once('open', function() {
+  console.log('Mongoose connection successful.');
+});
+
 router.get('/books', (req, res) => {
   axios
     .get('https://www.googleapis.com/books/v1/volumes/', {

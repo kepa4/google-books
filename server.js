@@ -4,17 +4,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const apiRoutes = require('./routes/apiRoutes');
 const mongoose = require('mongoose');
-const MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost/googleBooks';
-
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI);
-
-var db = mongoose.connection;
-
-db.once('open', function() {
-  console.log('Mongoose connection successful.');
-});
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
